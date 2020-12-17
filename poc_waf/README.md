@@ -17,6 +17,7 @@ This repository contains HashiCorp Terraform configuration required to create re
 Generate Azure client id and secret.
 
 ```bash
+az login
 az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/YOUR_SUBSCRIPTION_ID"
 ```
 
