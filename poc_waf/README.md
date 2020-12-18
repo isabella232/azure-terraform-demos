@@ -1,9 +1,13 @@
 # Azure Terraform POC (Application Gateway / WAF)
+
+## Objective
 * Deploy 2 Virtual Machines with Apache web-server installed
 * Deploy Application Gateway/WAF and balance the access between the VMs (round-robin algorithm will be used to route the requests between healthy VMs)
 * WAF rule 931130 will be disabled as an example
+* Create the resources using Terraform
+* SSL/TLS will not be implemented at this time
 
-This repository contains HashiCorp Terraform configuration required to create resources at Azure.
+![alt text](https://github.com/ModusCreateOrg/azure-terraform-demos/tree/master/poc_waf/architecture.png?raw=true)
 
 ## Prerequisites
 
@@ -50,13 +54,7 @@ Run Terraform init and plan at \deployments\dev folder.
 
 ```bash
 terraform init
-```
-
-```bash
 terraform plan
-```
-
-```bash
 terraform apply
 ```
 
