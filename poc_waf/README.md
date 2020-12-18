@@ -7,9 +7,9 @@ This repository contains HashiCorp Terraform configuration required to create re
 
 ## Prerequisites
 
-* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) installed (Made with Azure CLI `2.16.0`)
-* HashiCorp [Terraform](https://terraform.io/downloads.html) installed (Made with Terraform version: `0.14.2`)
-* [Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html) (Made with azurerm version: `2.40.0`)
+* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) installed (made with Azure CLI `2.16.0`)
+* HashiCorp [Terraform](https://terraform.io/downloads.html) installed (made with Terraform version: `0.14.2`)
+* [Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html) (made with azurerm version: `2.40.0`)
 
 ## Tutorial
 
@@ -60,7 +60,7 @@ terraform plan
 terraform apply
 ```
 
-*Note: Creating an Application gateway can take up to 10/15 minutes.*
+*Note: Creating an Application gateway can take up to 20/25 minutes.*
 
 After the terraform apply finishes you can go to the Azure Portal  [Azure Portal](https://portal.azure.com/), get the Application Gateway IP address and access it using your browser at port 80 (http).
 The IP will be at: "Application gateways > poc-appgw-01-us-dev > Frontend public IP address"
