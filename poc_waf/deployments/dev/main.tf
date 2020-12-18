@@ -33,14 +33,6 @@ module "subnet_vm" {
   address_prefixes     = var.vm_01_subnet_address_prefix
 }
 
-# Create a Network Security Group
-module "network_security_group" {
-  source              = "../../modules/network_security_group/"
-  name                = "${var.project_name}-nsg-vm-${var.region}-${var.stage}"
-  resource_group_name = module.resource_group_01.name
-  location            = module.resource_group_01.location
-}
-
 # Create Virtual Machine
 module "linux_virtual_machine" {
   source                                         = "../../modules/linux_virtual_machine/"
