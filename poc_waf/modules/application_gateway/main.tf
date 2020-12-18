@@ -52,7 +52,7 @@ resource "azurerm_application_gateway" "application_gateway" {
 
   backend_address_pool {
     name         = "${var.name}-beap"
-    ip_addresses = [var.ip_addresses]
+    ip_addresses = split(",",var.ip_addresses)
   }
 
   backend_http_settings {
@@ -72,10 +72,10 @@ resource "azurerm_application_gateway" "application_gateway" {
 
   # Routing rule used to redirect customer traffic to the backend  
   request_routing_rule {
-    name                      = "${var.name}-rqrt"
-    rule_type                 = "Basic"
-    http_listener_name        = "${var.name}-httplstn"
-    backend_address_pool_name = "${var.name}-beap"
+    name                       = "${var.name}-rqrt"
+    rule_type                  = "Basic"
+    http_listener_name         = "${var.name}-httplstn"
+    backend_address_pool_name  = "${var.name}-beap"
     backend_http_settings_name = "${var.name}-behttp"
   }
 

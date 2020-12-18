@@ -1,16 +1,15 @@
 # Azure Terraform POC (Application Gateway / WAF)
-* Deploy one Virtual Machine with Apache web-server installed
-* Deploy Application Gateway / WAF
+* Deploy 2 Virtual Machines with Apache web-server installed
+* Deploy Application Gateway/WAF and balance the access between the VMs (round-robin algorithm will be used to route the requests between healthy VMs)
 * WAF rule 931130 will be disabled as an example
 
 This repository contains HashiCorp Terraform configuration required to create resources at Azure.
 
 ## Prerequisites
 
-* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) installed.
-* HashiCorp [Terraform](https://terraform.io/downloads.html) installed.
-* Made with Terraform version: `0.14.2`
-* [Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html) version: `2.40.0`
+* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) installed (Made with Azure CLI `2.16.0`)
+* HashiCorp [Terraform](https://terraform.io/downloads.html) installed (Made with Terraform version: `0.14.2`)
+* [Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html) (Made with azurerm version: `2.40.0`)
 
 ## Tutorial
 

@@ -44,6 +44,7 @@ module "network_security_group" {
 # Create Virtual Machine
 module "linux_virtual_machine" {
   source                                         = "../../modules/linux_virtual_machine/"
+  qty                                            = 2
   name                                           = "${var.project_name}-vm-01-${var.region}-${var.stage}"
   location                                       = module.resource_group_01.location
   resource_group_name                            = module.resource_group_01.name

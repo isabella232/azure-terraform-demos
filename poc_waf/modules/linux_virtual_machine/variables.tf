@@ -73,3 +73,7 @@ variable "ip_configuration_private_ip_address_allocation" {
 variable "network_interface_name" {
   description = "The name of the Network Interface. Changing this forces a new resource to be created."
 }
+
+variable "qty" {
+  description = "How many virtual machines should be created"
+}
