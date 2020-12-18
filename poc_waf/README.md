@@ -21,7 +21,7 @@ Generate Azure client id and secret.
 
 ```bash
 az login
-az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/YOUR_SUBSCRIPTION_ID"
+az ad sp create-for-rbac --role="Contributor" -n "poc-terraform" --scopes="/subscriptions/YOUR_SUBSCRIPTION_ID"
 ```
 
 Expected output:

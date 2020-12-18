@@ -52,7 +52,7 @@ resource "azurerm_application_gateway" "application_gateway" {
 
   backend_address_pool {
     name         = "${var.name}-beap"
-    ip_addresses = split(",",var.ip_addresses)
+    ip_addresses = split(",", var.ip_addresses)
   }
 
   backend_http_settings {
