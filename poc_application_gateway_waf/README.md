@@ -7,7 +7,7 @@
 * Create the resources using Terraform
 * SSL/TLS will not be implemented at this time
 
-![alt text](https://github.com/ModusCreateOrg/azure-terraform-demos/blob/master/poc_waf/architecture.png?raw=true)
+![alt text](https://github.com/ModusCreateOrg/azure-terraform-demos/blob/master/poc_application_gateway_waf/architecture.png?raw=true)
 
 ## Prerequisites
 
