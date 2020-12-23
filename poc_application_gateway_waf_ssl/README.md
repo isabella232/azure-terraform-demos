@@ -1,4 +1,4 @@
-# Azure Terraform POC (Application Gateway / WAF)
+# Azure Terraform POC (Application Gateway / WAF / TLS)
 
 ## Objective
 * Deploy 2 Virtual Machines with Apache web-server installed
@@ -7,7 +7,7 @@
 * Create the resources using Terraform
 * SSL/TLS will implemented at this time at Application Gateway (Lets Encrypt)
 
-![alt text](https://github.com/ModusCreateOrg/azure-terraform-demos/blob/master/poc_application_gateway_waf/architecture.png?raw=true)
+![alt text](https://github.com/ModusCreateOrg/azure-terraform-demos/blob/master/poc_application_gateway_waf/images/architecture.png?raw=true)
 
 ## Prerequisites
 
@@ -69,10 +69,14 @@ Error: error creating certificate: error: one or more domains had a problem:
         * error encountered while presenting token for DNS challenge: azure: unexpected response code 'SERVFAIL' for _acme-challenge.zipweb.xyz.
 ```
 
-It will happen because letsencrypt will try to validate the domain but the domain is not pointing to Azure DNS servers.  
+It will happen because Lets Encrypt will try to validate the domain but the domain is not pointing to Azure DNS servers.  
 Since you already runned terraform it created a DNS zone at Azure.  
 
+![alt text](https://github.com/ModusCreateOrg/azure-terraform-demos/blob/master/poc_application_gateway_waf/images/azure_dns.png?raw=true)
+
 Now you must go to your registrar (namecheap.com in this example) and update the DNS records.  
+
+![alt text](https://github.com/ModusCreateOrg/azure-terraform-demos/blob/master/poc_application_gateway_waf/images/namecheap_dns.png?raw=true)
 
 After updating the DNS at registrar you should wait until the new DNS server start working. You can check using the following command line:
 ```bash
