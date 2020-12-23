@@ -51,8 +51,8 @@ resource "azurerm_application_gateway" "application_gateway" {
   }
 
   ssl_certificate {
-    name     = "frontend-cert"
-    data     = var.frontend_tls_certificate
+    name = "frontend-cert"
+    data = var.frontend_tls_certificate
   }
 
   backend_address_pool {

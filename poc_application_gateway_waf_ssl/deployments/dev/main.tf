@@ -69,17 +69,17 @@ module "application_gateway" {
   pip_ip_version        = "IPv4"
 
   # Application Gateway (aka Web Application Firewall)
-  name                            = "${var.project_name}-appgw-01-${var.region}-${var.stage}"
-  subnet_name                     = "${var.project_name}-snet-appgw-01-${var.region}-${var.stage}"
-  resource_group_name             = module.resource_group_01.name
-  location                        = module.resource_group_01.location
-  vnet_id                         = module.virtual_network.id
-  vnet_name                       = module.virtual_network.name
-  vnet_address_space              = [var.waf_01_subnet_address_prefix]
-  backend_port                    = 80
-  backend_request_timeout         = 10
-  ip_addresses                    = module.linux_virtual_machine.private_ip_address
-  frontend_tls_certificate        = acme_certificate.certificate.certificate_p12
+  name                     = "${var.project_name}-appgw-01-${var.region}-${var.stage}"
+  subnet_name              = "${var.project_name}-snet-appgw-01-${var.region}-${var.stage}"
+  resource_group_name      = module.resource_group_01.name
+  location                 = module.resource_group_01.location
+  vnet_id                  = module.virtual_network.id
+  vnet_name                = module.virtual_network.name
+  vnet_address_space       = [var.waf_01_subnet_address_prefix]
+  backend_port             = 80
+  backend_request_timeout  = 10
+  ip_addresses             = module.linux_virtual_machine.private_ip_address
+  frontend_tls_certificate = acme_certificate.certificate.certificate_p12
 }
 
 # Create a DNS zone
@@ -101,7 +101,7 @@ module "dns_a_record_core" {
 # Create TLS/SSL using lets encrypt
 provider "acme" {
   #server_url = "https://acme-staging-v02.api.letsencrypt.org/directory"
-  server_url = "https://acme-v02.api.letsencrypt.org/directory" 
+  server_url = "https://acme-v02.api.letsencrypt.org/directory"
 }
 
 # Create the private key for the registration
