@@ -17,7 +17,7 @@
 
 ## Tutorial
 
-Generate Azure client id and secret.
+Creating a Service Principal
 
 ```bash
 az login
@@ -36,17 +36,18 @@ Expected output:
 }
 ```
 
-`appId` = Client id.
-`password` = Client secret.
-`tenant` = Tenant id.
+`appId` = CLIENT_ID, 
+`password` = CLIENT_SECRET, 
+`tenant` = TENANT_ID
 
-Export environment variables to configure the [Azure](https://www.terraform.io/docs/providers/azurerm/index.html) Terraform provider.
+Export environment variables to configure the [Azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret) Terraform provider.
 
 ```bash
 export ARM_SUBSCRIPTION_ID="YOUR_SUBSCRIPTION_ID"
 export ARM_TENANT_ID="TENANT_ID"
 export ARM_CLIENT_ID="CLIENT_ID"
 export ARM_CLIENT_SECRET="CLIENT_SECRET"
+az login --service-principal -u CLIENT_ID -p CLIENT_SECRET --tenant TENANT_ID
 ```
 Note: If you are using Windows replace "export" to "$ENV:" at powershell
 
@@ -60,5 +61,4 @@ terraform apply
 
 *Note: Creating an Application gateway can take up to 20/25 minutes.*
 
-After the terraform apply finishes you can go to the Azure Portal  [Azure Portal](https://portal.azure.com/), get the Application Gateway IP address and access it using your browser at port 80 (http).
-The IP will be at: "Application gateways > poc-appgw-01-us-dev > Frontend public IP address"
+After the terraform apply finishes you can go to the Azure Portal  [Azure Portal](https://portal.azure.com/), get the Application Gateway IP address and access it using your browser at port 80 (http). The IP will be at: "Application gateways > poc-appgw-01-us-dev > Frontend public IP address"
