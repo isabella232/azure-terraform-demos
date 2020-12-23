@@ -83,7 +83,7 @@ After updating the DNS at registrar you should wait until the new DNS server sta
 nslookup -type=ns zipweb.xyz
 ```
 
-If you have an answer like the one below that contains azure name servers you can run a terraform apply again and you will not have errors.
+If you have an answer like the one below that contains azure name servers you can run a terraform apply again and you will have no errors.
 ```bash
 Server:  UnKnown
 Address:  192.168.1.1
