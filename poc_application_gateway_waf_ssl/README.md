@@ -74,7 +74,8 @@ After updating the DNS at registrar you should wait until the new DNS server sta
 nslookup -type=txt zipweb.xyz
 ```
 
-If you have an answer like the one below that contains azure name servers you can run a terraform to create the resourses and configure the TLS certificate.
+If you have an answer like the one below that contains azure name servers you can run a terraform to create the resourses and configure the TLS certificate.  
+**If you do not wait the DNS propagation you will have an error in the next step since Lets Encript will do a dns challenge and it will fail**
 ```bash
 Server:  UnKnown
 Address:  192.168.1.1
