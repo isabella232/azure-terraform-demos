@@ -36,5 +36,4 @@ variable "domain_url" {
 
 variable "azure_client_secret" {
   description = "Azure client secret"
-  default     = ""
 }
