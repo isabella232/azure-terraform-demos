@@ -25,3 +25,24 @@ node_modules
 # yarn.lock
 
 ## Project-specific files
+
+# Local .terraform directories/files
+**/.terraform/*
+*.terraform.*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Ignore override files as they are usually used to override resources locally
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc

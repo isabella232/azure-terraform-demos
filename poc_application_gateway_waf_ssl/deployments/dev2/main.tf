@@ -8,19 +8,12 @@ provider "azurerm" {
   }
 }
 
-# Create a resource group
-module "resource_group_01" {
-  source   = "../../modules/resource_group/"
-  name     = "${var.project_name}-rg-${var.region}-${var.stage}"
-  location = var.location
-}
-
 # Create a Virtual Network
 module "virtual_network" {
   source              = "../../modules/virtual_network/"
   name                = "${var.project_name}-vnet-01-${var.region}-${var.stage}"
-  resource_group_name = module.resource_group_01.name
-  location            = module.resource_group_01.location
+  resource_group_name = "${var.project_name}-rg-${var.region}-${var.stage}"
+  location            = var.location
   address_space       = [var.vnet_01_address_space]
 }
 
@@ -28,7 +21,7 @@ module "virtual_network" {
 module "subnet_vm" {
   source               = "../../modules/subnet/"
   name                 = "${var.project_name}-snet-01-${var.region}-${var.stage}"
-  resource_group_name  = module.resource_group_01.name
+  resource_group_name  = "${var.project_name}-rg-${var.region}-${var.stage}"
   virtual_network_name = module.virtual_network.name
   address_prefixes     = var.vm_01_subnet_address_prefix
 }
@@ -38,8 +31,8 @@ module "linux_virtual_machine" {
   source                                         = "../../modules/linux_virtual_machine/"
   qty                                            = 2
   name                                           = "${var.project_name}-vm-01-${var.region}-${var.stage}"
-  location                                       = module.resource_group_01.location
-  resource_group_name                            = module.resource_group_01.name
+  location                                       = var.location
+  resource_group_name                            = "${var.project_name}-rg-${var.region}-${var.stage}"
   size                                           = "Standard_B1ls"
   admin_username                                 = "poc_admin"
   admin_password                                 = "This~is#a!P0C" # password explicity just for a POC - do not use in production env!
@@ -71,8 +64,8 @@ module "application_gateway" {
   # Application Gateway (aka Web Application Firewall)
   name                     = "${var.project_name}-appgw-01-${var.region}-${var.stage}"
   subnet_name              = "${var.project_name}-snet-appgw-01-${var.region}-${var.stage}"
-  resource_group_name      = module.resource_group_01.name
-  location                 = module.resource_group_01.location
+  resource_group_name      = "${var.project_name}-rg-${var.region}-${var.stage}"
+  location                 = var.location
   vnet_id                  = module.virtual_network.id
   vnet_name                = module.virtual_network.name
   vnet_address_space       = [var.waf_01_subnet_address_prefix]
@@ -82,18 +75,12 @@ module "application_gateway" {
   frontend_tls_certificate = acme_certificate.certificate.certificate_p12
 }
 
-# Create a DNS zone
-resource "azurerm_dns_zone" "dns_zone" {
-  name                = var.domain_url
-  resource_group_name = module.resource_group_01.name
-}
-
 # Create an A record
 module "dns_a_record_core" {
   source              = "../../modules/dns_a_record/"
   name                = "@"
-  zone_name           = azurerm_dns_zone.dns_zone.name
-  resource_group_name = module.resource_group_01.name
+  zone_name           = var.domain_url
+  resource_group_name = "${var.project_name}-rg-${var.region}-${var.stage}"
   ttl                 = 0
   records             = [data.azurerm_public_ip.public_ip.ip_address]
 }
@@ -132,10 +119,9 @@ resource "acme_certificate" "certificate" {
       AZURE_CLIENT_ID       = data.azurerm_client_config.current.client_id
       AZURE_CLIENT_SECRET   = var.azure_client_secret
       AZURE_TENANT_ID       = data.azurerm_client_config.current.tenant_id
-      AZURE_RESOURCE_GROUP  = module.resource_group_01.name
+      AZURE_RESOURCE_GROUP  = "${var.project_name}-rg-${var.region}-${var.stage}"
     }
   }
-  depends_on = [azurerm_dns_zone.dns_zone]
 }
 
 # Read data from the current subscription for later use (e.g.: when Tenant ID is needed)
@@ -144,7 +130,7 @@ data "azurerm_client_config" "current" {}
 # Read data from public ip from application gateway
 data "azurerm_public_ip" "public_ip" {
   name                = module.application_gateway.pip_name
-  resource_group_name = module.resource_group_01.name
+  resource_group_name = "${var.project_name}-rg-${var.region}-${var.stage}"
   # Explicit dependency is needed! Otherwise, when creating the AppGW for the firt time, the dependency is not respected and thus terraform apply fails
   depends_on = [module.application_gateway]
 }

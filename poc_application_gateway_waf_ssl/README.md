@@ -53,24 +53,15 @@ az login --service-principal -u CLIENT_ID -p CLIENT_SECRET --tenant TENANT_ID
 ```
 Note: If you are using Windows replace "export" to "$ENV:" at powershell  
 
-Run Terraform init and plan at \deployments\dev folder.
+Run Terraform init and plan at **\deployments\dev1** folder.
 
 ```bash
 terraform init
-terraform plan -var 'azure_client_secret=CLIENT_SECRET'
-terraform apply -var 'azure_client_secret=CLIENT_SECRET'
+terraform plan
+terraform apply
 ```
 
-The fist time you run the terraform apply you will have the following error: 
-```bash
-Error: error creating certificate: error: one or more domains had a problem:
-[zipweb.xyz] [zipweb.xyz] acme: error presenting token: 2 errors occurred:
-        * azure: unexpected response code 'SERVFAIL' for _acme-challenge.zipweb.xyz.
-        * error encountered while presenting token for DNS challenge: azure: unexpected response code 'SERVFAIL' for _acme-challenge.zipweb.xyz.
-```
-
-It will happen because Lets Encrypt will try to validate the domain but the domain is not pointing to Azure DNS servers.  
-Since you already runned terraform it created a DNS zone at Azure.  
+It will create a resource group, a DNS zone and a TXT record.  
 
 ![alt text](https://github.com/ModusCreateOrg/azure-terraform-demos/blob/master/poc_application_gateway_waf_ssl/images/azure_dns.png?raw=true)
 
@@ -80,22 +71,23 @@ Now you must go to your registrar (namecheap.com in this example) and update the
 
 After updating the DNS at registrar you should wait until the new DNS server start working. You can check using the following command line:
 ```bash
-nslookup -type=ns zipweb.xyz
+nslookup -type=txt zipweb.xyz
 ```
 
-If you have an answer like the one below that contains azure name servers you can run a terraform apply again and you will have no errors.
+If you have an answer like the one below that contains azure name servers you can run a terraform to create the resourses and configure the TLS certificate.
 ```bash
 Server:  UnKnown
 Address:  192.168.1.1
 
 Non-authoritative answer:
-zipweb.xyz      nameserver = ns2-08.azure-dns.net
-zipweb.xyz      nameserver = ns4-08.azure-dns.info
-zipweb.xyz      nameserver = ns3-08.azure-dns.org
-zipweb.xyz      nameserver = ns1-08.azure-dns.com
+zipweb.xyz      text =
+
+        "check_domain_ok"
 ```
 
 ```bash
+terraform init
+terraform plan -var 'azure_client_secret=CLIENT_SECRET'
 terraform apply -var 'azure_client_secret=CLIENT_SECRET'
 ```
 *Note: Creating an Application gateway can take up to 20/25 minutes.*  
