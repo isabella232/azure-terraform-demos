@@ -1,4 +1,4 @@
-# Azure Terraform POC (Application Gateway / WAF / TLS)
+# Azure Terraform PoC (Application Gateway / WAF / TLS)
 
 ## Objective
 * Deploy 2 Virtual Machines with Apache web-server installed
