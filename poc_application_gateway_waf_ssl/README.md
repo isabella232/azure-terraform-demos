@@ -85,6 +85,7 @@ zipweb.xyz      text =
         "check_domain_ok"
 ```
 
+Run Terraform init and plan at **\deployments\dev2** folder.
 ```bash
 terraform init
 terraform plan -var 'azure_client_secret=CLIENT_SECRET'
