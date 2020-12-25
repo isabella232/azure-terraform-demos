@@ -1,7 +1,6 @@
 # Azure Terraform PoC (Application Gateway / WAF / TLS)
 
-Service URL:  
-[https://azure.microsoft.com/en-us/services/web-application-firewall/](https://azure.microsoft.com/en-us/services/web-application-firewall/)
+Service URL: [https://azure.microsoft.com/en-us/services/web-application-firewall/](https://azure.microsoft.com/en-us/services/web-application-firewall/)
 
 ## Objective
 * Deploy 2 Virtual Machines with Apache web-server installed
