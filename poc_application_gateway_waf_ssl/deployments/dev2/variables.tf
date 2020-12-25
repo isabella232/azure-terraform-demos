@@ -33,7 +33,3 @@ variable "ssl_email" {
 variable "domain_url" {
   description = "URL to install the TLS/SSL"
 }
-
-variable "azure_client_secret" {
-  description = "Azure client secret"
-}

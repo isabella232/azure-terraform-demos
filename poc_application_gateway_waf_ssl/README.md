@@ -102,8 +102,8 @@ zipweb.xyz      text =
 Run Terraform init and plan at **\deployments\dev2** folder.
 ```bash
 terraform init
-terraform plan -var 'azure_client_secret=CLIENT_SECRET'
-terraform apply -var 'azure_client_secret=CLIENT_SECRET'
+terraform plan
+terraform apply
 ```
 *Note: Creating an Application gateway can take up to 20/25 minutes.*  
 
