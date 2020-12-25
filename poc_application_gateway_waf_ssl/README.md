@@ -1,5 +1,8 @@
 # Azure Terraform PoC (Application Gateway / WAF / TLS)
 
+Service URL:  
+[https://azure.microsoft.com/en-us/services/web-application-firewall/](https://azure.microsoft.com/en-us/services/web-application-firewall/)
+
 ## Objective
 * Deploy 2 Virtual Machines with Apache web-server installed
 * Deploy Application Gateway/WAF and balance the access between the VMs (round-robin algorithm will be used to route the requests between healthy VMs)
