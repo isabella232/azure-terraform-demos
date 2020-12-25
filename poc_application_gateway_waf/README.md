@@ -5,7 +5,7 @@
 
 Azure Service URL: [https://azure.microsoft.com/en-us/services/web-application-firewall/](https://azure.microsoft.com/en-us/services/web-application-firewall/)
 
-- [Objective](##Objective)
+- [Objective](#Objective)
 - [Prerequisites](#Prerequisites)
 - [Tutorial](#Tutorial)
 - [Modus Create](#modus-create)
