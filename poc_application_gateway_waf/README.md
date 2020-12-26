@@ -75,7 +75,7 @@ terraform apply
 After the terraform apply finishes you can go to the Azure Portal  [Azure Portal](https://portal.azure.com/), get the Application Gateway IP address and access it using your browser at port 80 (http).  
 The IP will be at: **"Application gateways > poc-appgw-01-us-dev > Frontend public IP address"**
 
-Normal access: http://xxx.xxx.xxx.xxx
+Normal access: http://xxx.xxx.xxx.xxx  
 Malicious URL will be blocked by WAF: http://xxx.xxx.xxx.xxx?injection=--insert  
 
 ## Modus Create
