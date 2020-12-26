@@ -107,7 +107,10 @@ terraform apply
 ```
 *Note: Creating an Application gateway can take up to 20/25 minutes.*  
 
-**After the terraform apply finishes you can access the domain using the browser "zipweb.xyz" and you will have a valid SLL/TLS certificate working.**
+**After the terraform apply finishes you can access the domain using the browser "appgw-waf.zipweb.xyz" and you will have a valid SLL/TLS certificate working.**  
+
+Normal access: [https://appgw-waf.zipweb.xyz](https://appgw-waf.zipweb.xyz)  
+Malicious URL will be blocked by WAF: [https://appgw-waf.zipweb.xyz?injection=--insert](https://appgw-waf.zipweb.xyz?injection=--insert)  
 
 ## Modus Create
 

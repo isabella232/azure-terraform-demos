@@ -65,3 +65,24 @@ variable "ip_addresses" {
 variable "backend_request_timeout" {
   description = "The request timeout in seconds, which must be between 1 and 86400 seconds"
 }
+
+variable "health_probe_name" {
+  description = "The Name of the Probe."
+  default     = "probe"
+}
+
+variable "health_probe_path" {
+  description = "The Path used for this Probe"
+  default     = "/"
+}
+
+variable "health_probe_protocol" {
+  description = "The Protocol used for this Probe. Possible values are Http and Https"
+  default     = "Http"
+}
+
+variable "pick_host_name_from_backend_http_settings" {
+  description = "Whether the host header should be picked from the backend http settings. Defaults to false."
+  default     = true
+}
+ 

@@ -23,7 +23,7 @@ resource "azurerm_linux_virtual_machine" "linux_virtual_machine" {
   admin_password                  = var.admin_password
   disable_password_authentication = var.disable_password_authentication
   network_interface_ids           = [element(azurerm_network_interface.network_interface.*.id, count.index)]
-  custom_data                     = var.custom_data
+  custom_data                     = base64encode(replace(var.custom_data, "#XXX#", "${var.name}-${count.index}"))
 
   os_disk {
     name                 = "${var.os_disk_name}-${count.index}"

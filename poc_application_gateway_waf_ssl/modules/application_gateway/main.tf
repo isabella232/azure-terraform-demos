@@ -111,6 +111,21 @@ resource "azurerm_application_gateway" "application_gateway" {
     backend_http_settings_name = "${var.name}-behttp"
   }
 
+  probe {
+    name                                      = var.health_probe_name
+    protocol                                  = var.health_probe_protocol
+    path                                      = var.health_probe_path
+    pick_host_name_from_backend_http_settings = var.pick_host_name_from_backend_http_settings
+    interval                                  = 5
+    timeout                                   = 30
+    unhealthy_threshold                       = 3
+  }
+
+  ssl_policy {
+    policy_name = "AppGwSslPolicy20170401S" # Pre-defined policy for increased security whose minimum protocol version accepted is TLSv1.2
+    policy_type = "Predefined"              # The Type of the Policy.
+  }
+
   waf_configuration {
     enabled          = true
     firewall_mode    = "Prevention"

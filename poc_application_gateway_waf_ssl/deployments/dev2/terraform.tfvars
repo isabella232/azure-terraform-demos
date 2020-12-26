@@ -16,5 +16,6 @@ waf_01_subnet_address_prefix = "10.1.255.0/28" #14 hosts - 10.1.255.1 to 10.1.25
 ################################################################################
 # Variables for domain
 ################################################################################
-ssl_email  = "fernando.matsuo@moduscreate.com"
-domain_url = "zipweb.xyz"
+ssl_email    = "fernando.matsuo@moduscreate.com"
+domain_url   = "zipweb.xyz"
+subdomain_01 = "appgw-waf"

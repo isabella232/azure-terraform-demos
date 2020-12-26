@@ -44,7 +44,7 @@ module "linux_virtual_machine" {
   source_image_reference_offer                   = "UbuntuServer"
   source_image_reference_sku                     = "18.04-LTS"
   source_image_reference_version                 = "latest"
-  custom_data                                    = base64encode(file("azure-user-data.sh"))
+  custom_data                                    = file("azure-user-data.sh")
   network_interface_name                         = "${var.project_name}-ni-01-${var.region}-${var.stage}"
   ip_configuration_name                          = "${var.project_name}-vm-01-ip-${var.region}-${var.stage}"
   ip_configuration_subnet_id                     = module.subnet_vm.id
@@ -70,15 +70,15 @@ module "application_gateway" {
   vnet_name                = module.virtual_network.name
   vnet_address_space       = [var.waf_01_subnet_address_prefix]
   backend_port             = 80
-  backend_request_timeout  = 10
+  backend_request_timeout  = 5
   ip_addresses             = module.linux_virtual_machine.private_ip_address
   frontend_tls_certificate = acme_certificate.certificate.certificate_p12
 }
 
 # Create an A record
-module "dns_a_record_core" {
+module "dns_a_record" {
   source              = "../../modules/dns_a_record/"
-  name                = "@"
+  name                = var.subdomain_01
   zone_name           = var.domain_url
   resource_group_name = "${var.project_name}-rg-${var.region}-${var.stage}"
   ttl                 = 0
@@ -87,8 +87,8 @@ module "dns_a_record_core" {
 
 # Create TLS/SSL using lets encrypt
 provider "acme" {
-  #server_url = "https://acme-staging-v02.api.letsencrypt.org/directory"
-  server_url = "https://acme-v02.api.letsencrypt.org/directory"
+  server_url = "https://acme-staging-v02.api.letsencrypt.org/directory"
+  #server_url = "https://acme-v02.api.letsencrypt.org/directory"
 }
 
 # Create the private key for the registration

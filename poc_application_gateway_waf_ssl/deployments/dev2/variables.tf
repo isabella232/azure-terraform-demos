@@ -33,3 +33,7 @@ variable "ssl_email" {
 variable "domain_url" {
   description = "URL to install the TLS/SSL"
 }
+
+variable "subdomain_01" {
+  description = "subdomain URL to install the TLS/SSL"
+}

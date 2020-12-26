@@ -79,6 +79,16 @@ resource "azurerm_application_gateway" "application_gateway" {
     backend_http_settings_name = "${var.name}-behttp"
   }
 
+  probe {
+    name                                      = var.health_probe_name
+    protocol                                  = var.health_probe_protocol
+    path                                      = var.health_probe_path
+    pick_host_name_from_backend_http_settings = var.pick_host_name_from_backend_http_settings
+    interval                                  = 5
+    timeout                                   = 30
+    unhealthy_threshold                       = 3
+  }
+
   waf_configuration {
     enabled          = true
     firewall_mode    = "Prevention"

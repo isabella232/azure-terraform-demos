@@ -21,6 +21,11 @@ resource "azurerm_dns_zone" "dns_zone" {
   resource_group_name = module.resource_group_01.name
 }
 
+resource "azurerm_dns_zone" "dns_zone_subdomain_01" {
+  name                = "${var.subdomain_01}.${var.domain_url}"
+  resource_group_name = module.resource_group_01.name
+}
+
 # Create a TXT record
 module "dns_txt_record_core" {
   source              = "../../modules/dns_txt_record/"

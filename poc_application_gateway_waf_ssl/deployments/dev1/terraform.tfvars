@@ -9,4 +9,5 @@ location     = "eastus"
 ################################################################################
 # Variables for domain
 ################################################################################
-domain_url = "zipweb.xyz"
+domain_url   = "zipweb.xyz"
+subdomain_01 = "appgw-waf"
