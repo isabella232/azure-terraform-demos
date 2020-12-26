@@ -1,0 +1,3 @@
+terraform init
+terraform import azurerm_web_application_firewall_policy.web_application_firewall_policy /subscriptions/c701c3bd-4133-43b4-a956-bc444a8f1acc/resourceGroups/poc03-rg-us-dev/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/poc03-policy-appgw-01-us-dev
+
