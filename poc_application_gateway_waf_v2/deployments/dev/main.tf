@@ -80,5 +80,13 @@ module "application_gateway" {
   backend_port            = 80
   backend_request_timeout = 5
   ip_addresses            = module.linux_virtual_machine.private_ip_address
-  policy_name             = "${var.project_name}-policy-appgw-01-${var.region}-${var.stage}"
+  firewall_policy_id      = module.web_application_firewall_policy.id
+}
+
+# Create a WAF policy
+module "web_application_firewall_policy" {
+  source              = "../../modules/web_application_firewall_policy/"
+  name                = "${var.project_name}-waf-policy-01-${var.region}-${var.stage}"
+  resource_group_name = module.resource_group_01.name
+  location            = module.resource_group_01.location
 }

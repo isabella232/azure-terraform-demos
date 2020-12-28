@@ -85,6 +85,7 @@ variable "pick_host_name_from_backend_http_settings" {
   default     = true
 }
 
-variable "policy_name" {
-  description = "The name of the policy. Changing this forces a new resource to be created."
+variable "firewall_policy_id" {
+  description = "The ID of the Web Application Firewall Policy."
 }
+
