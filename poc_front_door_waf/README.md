@@ -66,9 +66,6 @@ terraform init
 terraform plan
 terraform apply
 ```
-
-*Note: Creating an Application gateway can take up to 5/10 minutes.*
-
 After the terraform apply finishes you can go to the Azure Portal  [Azure Portal](https://portal.azure.com/), get the Front Door address and access it using your browser.  
 The IP will be at: **"Front Door > poc04-frontdoor-us-dev > Frontend host"**
 
