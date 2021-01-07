@@ -7,21 +7,21 @@ Azure URL: [https://portal.azure.com/](https://portal.azure.com/)
 
 **PoC of standing up and manipulating various Azure services via Terraform.**
 
-**poc_application_gateway_waf**  
+**poc_application_gateway_waf**
 * Deploy 2 Virtual Machines with Apache web-server installed
 * Deploy Application Gateway/WAF and balance the access between the VMs (round-robin algorithm will be used to route the requests between healthy VMs)
 * WAF rule 931130 will be disabled as an example
 * Create the resources using Terraform
 * SSL/TLS will not be implemented at this time
 
-**poc_application_gateway_waf_ssl**  
+**poc_application_gateway_waf_ssl**
 * Deploy 2 Virtual Machines with Apache web-server installed
 * Deploy Application Gateway/WAF and balance the access between the VMs (round-robin algorithm will be used to route the requests between healthy VMs)
 * WAF rule 931130 will be disabled as an example
 * Create the resources using Terraform
 * SSL/TLS will be implemented at this time at Application Gateway (Lets Encrypt)
 
-**poc_application_gateway_waf_v2**  
+**poc_application_gateway_waf_v2**
 * Deploy 2 Virtual Machines with Apache web-server installed
 * Deploy Application Gateway/WAF_v2 and balance the access between the VMs (round-robin algorithm will be used to route the requests between healthy VMs)
 * WAF rule 931130 will be disabled as an example
@@ -29,17 +29,17 @@ Azure URL: [https://portal.azure.com/](https://portal.azure.com/)
 * Create the resources using Terraform
 * SSL/TLS will not be implemented at this time
 
-**poc_front_door_waf**  
+**poc_front_door_waf**
 * Deploy a Web App Service - httpd Docker
 * Enable WAF
 * Access outside USA and Brazil will be blocked as an example
 * Create the resources using Terraform
 
-**poc_key_vault**  
-Create a KeyVault
-Give access permission to Terraform SP and subscription owner
-Generate a ramdom secret
-Store the secret in the KeyVault
+**poc_key_vault**
+* Create a KeyVault
+* Give access permission to Terraform SP and subscription owner
+* Generate a ramdom secret
+* Store the secret in the KeyVault
 
 ## Modus Create
 
