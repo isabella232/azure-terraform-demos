@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: wordpress-app
+  template:
+    metadata:
+      labels:
+        app: wordpress-app
+    spec:
+      containers:
+      - name: wordpress-container
+        image: wordpress
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          protocol: TCP
+  strategy:
+    type: Recreate

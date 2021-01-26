@@ -1,0 +1,26 @@
+
+
+
+az login --service-principal -u "b4ca67f1-c385-4f35-b887-af7d42b2c482" -p "vrErJRh9YoeDA5lH7aodDRvqdQX3s-Vl5K" --tenant "d3552869-ed01-465b-8f62-e394dea60dc9"
+
+az aks get-credentials --resource-group poc06-rg-us-dev --name poc06-aks-01-us-dev --overwrite-existing
+
+kubectl create namespace infrastructure --dry-run=client -o yaml | kubectl apply -f -
+
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+
+cd C:\zzz_projects_modus\azure-terraform-demos\poc_aks_waf\aks_yaml
+
+helm upgrade --install nginx-ingress ingress-nginx/ingress-nginx --namespace infrastructure -f internal-ingress.yaml --set controller.replicaCount=2
+
+kubectl --namespace infrastructure get services -o wide -w nginx-ingress-ingress-nginx-controller
+
+kubectl create namespace app01 --dry-run=client -o yaml | kubectl apply -f -
+
+kubectl create -f deployment.yaml -n app01
+kubectl create -f service.yaml -n app01
+kubectl create -f ingress.yaml -n app01
+
+kubectl delete -f deployment.yaml -n app01
+kubectl delete -f service.yaml -n app01
+kubectl delete -f ingress.yaml -n app01
