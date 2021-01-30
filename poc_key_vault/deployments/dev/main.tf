@@ -32,7 +32,7 @@ module "key_vault" {
   sp_object_id = data.azuread_service_principal.pipeline_service_principal.object_id
 
   # Parameters to create an Access Policy for subscription Owner
-  owner_object_id = "XXXXX"
+  owner_object_id = "xxxx"
 }
 
 # Generate random passwords

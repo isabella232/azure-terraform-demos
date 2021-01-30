@@ -24,7 +24,7 @@ resource "azurerm_kubernetes_cluster" "kubernetes_cluster" {
     network_plugin     = "azure"
     service_cidr       = var.service_cidr
     dns_service_ip     = var.dns_service_ip
-    docker_bridge_cidr = "172.17.0.1/16"
+    docker_bridge_cidr = "172.17.0.1/16" #65534 hosts - 172.17.0.1 to 172.17.255.254
     load_balancer_sku  = var.load_balancer_sku
   }
 

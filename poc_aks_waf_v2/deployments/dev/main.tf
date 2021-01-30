@@ -48,7 +48,7 @@ module "kubernetes_cluster" {
 
 # Create an Application Gateway / WAF
 module "application_gateway" {
-  source = "../../modules/application_gateway/"
+  source = "../../modules/application_gateway_waf_v2/"
 
   # Public IP
   pip_name              = "${var.project_name}-appgw-pip-01-${var.region}-${var.stage}"
@@ -67,4 +67,12 @@ module "application_gateway" {
   backend_port            = 80
   backend_request_timeout = 5
   backend_address_pool    = [var.waf_01_backend_address]
+}
+
+# Create a WAF policy
+module "web_application_firewall_policy" {
+  source              = "../../modules/web_application_firewall_policy/"
+  name                = "${var.project_name}-waf-policy-01-${var.region}-${var.stage}"
+  resource_group_name = module.resource_group_01.name
+  location            = module.resource_group_01.location
 }
